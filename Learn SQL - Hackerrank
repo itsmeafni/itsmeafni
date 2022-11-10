@@ -68,5 +68,7 @@ PIVOT(
 ) AS pivot_table
 ORDER BY ROW_NO;
 ```
+Afni's Note : Get this code from Stack Overflow
+
 
 
