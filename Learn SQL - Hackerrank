@@ -45,4 +45,28 @@ GROUP BY occupation
 ORDER BY COUNT(occupation), occupation ASC
 ```
 
+5. #Pivot the Occupation column in OCCUPATIONS so that each Name is sorted alphabetically and displayed underneath its corresponding Occupation.
+The output column headers should be Doctor, Professor, Singer, and Actor, respectively.
+
+Note: Print NULL when there are no more names corresponding to an occupation.
+
+```
+SELECT [Doctor], [Professor], [Singer], [Actor] FROM         
+(
+    SELECT ROW_NUMBER() OVER (PARTITION BY Occupation ORDER BY Name) ROW_NO,     -> row_number() over (partition xxx should be 1 unity and followed by ORDER BY)
+    ISNULL(Name,NULL) as Name, Occupation                                         -> IS NULL function bcs the task request 'Print NULL when there are no more names corresponding to an occupation.'
+    FROM Occupations
+) AS t 
+PIVOT(
+    MAX(Name)
+    FOR Occupation IN (
+        [Doctor], 
+        [Professor], 
+        [Singer], 
+        [Actor]
+    )
+) AS pivot_table
+ORDER BY ROW_NO;
+```
+
 
