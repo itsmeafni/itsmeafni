@@ -1,0 +1,48 @@
+1. #Query the Name of any student in STUDENTS who scored higher than  Marks. 
+Order your output by the last three characters of each name.
+If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+
+```
+SELECT name FROM students WHERE marks>75 
+ORDER BY RIGHT(name,3), ID ASC
+```
+
+2. #Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+
+```
+SELECT name FROM employee ORDER BY name ASC
+```
+
+3. Write a query that prints a list of employee names (i.e.: the name attribute) 
+for employees in Employee having a salary greater than 2000 per month who have been employees for less than 10 months.
+Sort your result by ascending employee_id.
+
+```
+SELECT name FROM employee WHERE salary>2000 AND months<10 ORDER BY employee_id ASC
+```
+
+4. #1. Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical 
+    (i.e.: enclosed in parentheses).
+    For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+
+    2. Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
+      
+       There are a total of [occupation_count] [occupation]s.
+
+       where [occupation_count] is the number of occurrences of an occupation in OCCUPATIONS and [occupation] is the lowercase 
+       occupation name. If more than one Occupation has the same [occupation_count], they should be ordered alphabetically.
+
+For 1.
+```
+SELECT CONCAT(name,'(',LEFT (Occupation,1),')') AS x FROM occupations 
+ORDER BY name;
+```
+For 2
+```
+SELECT 
+'There are a total of ' + CAST(COUNT(occupation) AS VARCHAR(30)) +' '+ LOWER(occupation) +'s.' FROM occupations
+GROUP BY occupation
+ORDER BY COUNT(occupation), occupation ASC
+```
+
+
