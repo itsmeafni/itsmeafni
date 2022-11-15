@@ -90,10 +90,29 @@ FROM BST
 ORDER BY N;
 ```
 
+7. #Query the sum of the populations for all Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
 
+```
+SELECT SUM(population) FROM city WHERE countrycode='JPN'
+```
 
+8. #Query the difference between the maximum and minimum populations in CITY.
 
+```
+SELECT MAX(population) - MIN(population) FROM city
+```
 
+9. 
+
+SELECT AVG(salary) - AVG(CASE
+WHEN salary LIKE '00%' THEN salary/100,2
+WHEN salary LIKE '%0%' THEN salary/1000
+WHEN salary LIKE '%00%' THEN salary/1000
+ELSE salary/10
+END)
+FROM employees
+
+SELECT ROUND(AVG(salary) - AVG(CAST(REPLACE(CAST(salary as VARCHAR(10)),'0','') AS INT)),-1) FROM employees 
 
 
 
