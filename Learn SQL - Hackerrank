@@ -114,5 +114,7 @@ FROM employees
 
 SELECT ROUND(AVG(salary) - AVG(CAST(REPLACE(CAST(salary as VARCHAR(10)),'0','') AS INT)),-1) FROM employees 
 
+SELECT CAST(REPLACE(CAST(salary as VARCHAR(10)),'0','') AS INT) FROM employees 
+
 
 
